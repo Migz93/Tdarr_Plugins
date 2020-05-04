@@ -90,7 +90,7 @@ function plugin(file, librarySettings, inputs) {
             // Check if inputs.commentary is set to true AND if stream is subtitle AND then checks for stream titles with the following "commentary, description, sdh". Removing any streams that are applicable.
             if (inputs.commentary.toLowerCase() == "true" && file.ffProbeData.streams[i].codec_type.toLowerCase() == "subtitle" && (file.ffProbeData.streams[i].tags.title.toLowerCase().includes('commentary') || file.ffProbeData.streams[i].tags.title.toLowerCase().includes('description') || file.ffProbeData.streams[i].tags.title.toLowerCase().includes('sdh'))) {
                 ffmpegCommandInsert += `-map -0:s:${subtitleIdx} `
-                response.infoLog += `☒Subtitle stream detected as being Commentary or Description, removing. Subtitle stream 0:s:${SubtitleIdx} - ${file.ffProbeData.streams[i].tags.title}. \n`
+                response.infoLog += `☒Subtitle stream detected as being Commentary or Description, removing. Subtitle stream 0:s:${subtitleIdx} - ${file.ffProbeData.streams[i].tags.title}. \n`
                 convert = true
             }
         } catch (err) {}
